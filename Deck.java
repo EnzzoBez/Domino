@@ -2,11 +2,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Deck{
-    private ArrayList<Piece> pieces;
-    Random random = new Random();
+    private ArrayList<Piece> pieces = new ArrayList<>();
+    private Random random = new Random();
 
     public Deck(){
-        this.pieces = new ArrayList<>();
         this.populate();
     }
 
@@ -18,7 +17,11 @@ public class Deck{
         }
     }
 
+    public ArrayList<Piece> getPieces(){
+        return this.pieces;
+    }
+    
     public Piece pickPiece(){
-        return pieces.remove(random.nextInt());
+        return pieces.remove(random.nextInt(this.pieces.size()));
     }
 }

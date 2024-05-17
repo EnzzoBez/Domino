@@ -15,14 +15,23 @@ public class Player{
         this.name = name;
     }
 
-    public void initialDraw(Piece piece){
-        for (int i = 0; i < 7; i++) {
-            this.draw(piece);
-        }
-    }
-
     public void draw(Piece piece){
         this.hand.add(piece);
     }
+
+    public ArrayList<Piece> getHand(){
+        return this.hand;
+    }
+
+    public int mostRelevantPiece(){
+        int mostRelevant = 0;
+        for(int i = 0; i < hand.size(); i++){
+            if (hand.get(i).isPair()) {
+                mostRelevant = hand.get(i).numberPiece();
+            }
+        }
+        return mostRelevant;
+    }
+
 
 }

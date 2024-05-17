@@ -1,19 +1,39 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 public class Table{
-    public static void main(String[] args){
-        Scanner input = new Scanner(System.in);
-        Deck deck = new Deck();
-        System.out.print("Number of players: ");
-        int np= input.nextInt();
-        input.nextLine();
-
-        for (int i = 0; i < np; i++){
-            Player player = new Player("asdf");
-        }
-
-        player.draw(deck.pickPiece());
-
-    }
     private ArrayList<Player> players = new ArrayList<>();
+    private Deck deck;
+    private int currentPlayer;
+
+    public void addPlayer(Player player){
+        this.players.add(player);
+    }
+
+    public void setDeck(Deck deck){
+        this.deck = deck;
+    }
+
+    public void initialDraw(Piece piece){
+        for(int i = 0; i < players.size(); i++){
+            for (int j = 0; j < 7; j++) {
+                this.players.get(i).draw(this.deck.pickPiece());
+            }
+        }
+    }
+
+    public int mostRelevantHand(){
+        int mostRelevant = 0;
+        int playerMostRelevantPiece;
+        for(int i = 0; i < players.size(); i++){
+            playerMostRelevantPiece = players.get(i).mostRelevantPiece();
+            if(mostRelevant > playerMostRelevantPiece){
+                mostRelevant = playerMostRelevantPiece;
+                currentPlayer = i;
+            }
+
+        }
+        return mostRelevant;
+    }
+
+
+
 }
