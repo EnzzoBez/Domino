@@ -1,26 +1,30 @@
-import java.util.Scanner;
-public class Main{
-    public static void main(String[] args){
-        Scanner input = new Scanner(System.in);
-        Deck deck = new Deck();
-        Table table = new Table();
-        table.setDeck(deck);
+public class Piece {
+    private int left;
+    private int right;
 
-        System.out.print("Number of players: ");
-        int np= input.nextInt();
-        input.nextLine();
+    public Piece(int left, int right) {
+        this.left = left;
+        this.right = right;
+    }
 
-        for (int i = 0; i < np; i++){
-            System.out.print("Player name" + (i+1) + ": ");
-            String name = input.nextLine();
-            Player player = new Player(name);
-            table.addPlayer(player);
-        }
+    public int getLeft() {
+        return left;
+    }
 
-        if(deck.getPieces().isEmpty()){
-            
-        } else{
-            player.draw(deck.pickPiece());
-        }
+    public int getRight() {
+        return right;
+    }
+
+    public boolean isPair() {
+        return left == right;
+    }
+
+    public int numberPiece() {
+        return left + right;
+    }
+
+    @Override
+    public String toString() {
+        return "[" + left + "|" + right + "]";
     }
 }
